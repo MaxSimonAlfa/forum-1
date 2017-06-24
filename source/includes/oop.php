@@ -195,10 +195,10 @@
          */
         function adminCheck() {
             include "includes/connection.php";
-            $admin = $con->prepare("SELECT admin FROM users WHERE username = ?");
-            $admin->execute(array($_SESSION['username']));
-            $adminOutput = $admin->fetch();
-            return $adminOutput;
+            $iets = $con->prepare("SELECT admin FROM users WHERE username = ?");
+            $iets->execute(array($_SESSION['username']));
+            $ietsOutput = $iets->fetchAll();
+            return $ietsOutput;
         }
         /**
          * deze punctie maakt een nieuw topic aan als je admin bent
