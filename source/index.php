@@ -19,6 +19,7 @@
         session_destroy();
         header ('Location: index.php');
     }
+    $adminCheck = $login->adminCheck();
 
 
 ?>
@@ -79,6 +80,9 @@
             echo '<p><a class="btn btn-primary btn-lg" href="register.php" role="button">registreer jezelf &raquo;</a></p>';
         } if ($loggedin == true) {
             echo '<p><a class="btn btn-primary btn-lg" href="profile.php" role="button">naar je profile &raquo;</a></p>';
+            if ($adminCheck['admin'] == 1) {
+                echo '<p><a class="btn btn-primary btn-lg" href="adminpannel.php" role="button">naar het adminpannel &raquo;</a></p>';
+            }
         } ?>
       </div>
     </div>

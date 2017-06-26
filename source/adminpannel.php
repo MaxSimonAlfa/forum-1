@@ -3,11 +3,18 @@
     include "includes/oop.php";
     $admin = New forum;
     $adminCheck = $admin->adminCheck();
-    if ($adminCheck == 1) {
+    if ($adminCheck['admin'] == 1) {
         echo "";
     } else {
         header("Location: index.php");
     }
+    if (isset($_POST['versturen'])) {
+        $data = $admin->placeTopic($_POST['name'], $_POST['content']);
+    }
+    if (isset($_POST['banUser'])) {
+        $data = $admin->banUser($_POST['username']);
+    }
+
 
 ?>
 <!DOCTYPE html>
@@ -43,11 +50,17 @@
     <div class="jumbotron">
       <div class="container">
           <?php
-              if ($adminCheck == 1) {
+              if ($adminCheck['admin'] == 1) {
                   echo '<form class="" action="" method="post">
+                      <h2>Maak een nieuw topic aan</h2>
                       <input type="text" name="name" value="s">
                       <br /><textarea name="content" rows="8" cols="80"></textarea>
                       <br /><input type="submit" name="versturen" value="versturen">
+                  </form>';
+                  echo '<form class="" action="" method="post">
+                      <h2>verwijder een user</h2>
+                      <input type="text" name="username" value="">
+                      <br /><input type="submit" name="banUser" value="versturen">
                   </form>';
               } else  {
                   echo "";

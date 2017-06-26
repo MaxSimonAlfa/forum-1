@@ -87,7 +87,7 @@
             $descriptionCheck = $con->prepare("SELECT description FROM users WHERE username = ?");
             $descriptionCheck->execute(array($_SESSION['username']));
             $descriptionCheckOutput = $descriptionCheck->fetchAll();
-            if (!empty($descriptionCheckOutput)) {
+            if (!empty($descriptionCheckOutput['description'])) {
                 header('Location: index.php');
             }   else {
                 header('Location: makeprofile.php');
@@ -197,7 +197,7 @@
             include "includes/connection.php";
             $iets = $con->prepare("SELECT admin FROM users WHERE username = ?");
             $iets->execute(array($_SESSION['username']));
-            $ietsOutput = $iets->fetchAll();
+            $ietsOutput = $iets->fetch();
             return $ietsOutput;
         }
         /**
@@ -207,6 +207,12 @@
             include "includes/connection.php";
             $placePost = $con->prepare("INSERT INTO topics (name, description, username) VALUES(?, ?, ?)");
             $placePost->execute(array($name, $description, $_SESSION['username']));
+        }
+        function banUser($username1) {
+            include "includes/connection.php";
+            $deleteUser = $con->prepare("DELETE FROM users WHERE username = ?");
+            $deleteUser->execute(array($username1));
+
         }
     }
 ?>
