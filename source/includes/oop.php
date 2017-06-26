@@ -86,7 +86,7 @@
             include "includes/connection.php";
             $descriptionCheck = $con->prepare("SELECT description FROM users WHERE username = ?");
             $descriptionCheck->execute(array($_SESSION['username']));
-            $descriptionCheckOutput = $descriptionCheck->fetchAll();
+            $descriptionCheckOutput = $descriptionCheck->fetch();
             if (!empty($descriptionCheckOutput['description'])) {
                 header('Location: index.php');
             }   else {
