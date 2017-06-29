@@ -9,7 +9,7 @@
     $admin = $topics->adminCheck();
     if (isset($_POST['logOut'])) {
         session_destroy();
-        header ('Location: index.php');
+        header("Refresh:0");
     }
     if (isset($_POST['send'])) {
         $data = $topics->login($_POST['username'], $_POST['password']);
@@ -21,6 +21,7 @@
     }
     if (isset($_POST['versturen'])) {
         $data = $topics->placeTopic($_POST['content'], $_POST['name']);
+        header("Refresh:0");
     }
 
 ?>
@@ -75,6 +76,7 @@
     <div class="container">
       <!-- Example row of columns -->
       <div>
+          <h1>Alle topics</h1><hr>
         <?php foreach($topic as $topic):?>
         <div >
           <h2><?php echo $topic['name']; ?></h2>
@@ -84,10 +86,10 @@
         <hr>
         <?php endforeach; ?>
         <?php
-            if ($admin == 1) {
-                echo '<form class="" action="" method="post">
-                    <input type="text" name="name" value="s">
-                    <br /><textarea name="content" rows="8" cols="80"></textarea>
+            if ($admin['admin'] == 1) {
+                echo '<h3>maak een nieuw topic aan:</h3> <br /><form class="" action="" method="post">
+                    topic name:<br /><input type="text" name="name" value="">
+                    <br />topic description:<br /><textarea name="content" rows="8" cols="80"></textarea>
                     <br /><input type="submit" name="versturen" value="versturen">
                 </form>';
             } else  {

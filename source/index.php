@@ -17,7 +17,7 @@
     $loggedin = $login->isLoggedIn($_SESSION["isLoggedIn"]);
     if (isset($_POST['logOut'])) {
         session_destroy();
-        header ('Location: index.php');
+        header("Refresh:0");
     }
     $adminCheck = $login->adminCheck();
 

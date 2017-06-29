@@ -9,11 +9,12 @@
     $reaction = $topics->showReactions($_GET['id']);
     if (isset($_POST['versturen'])) {
         $data = $topics->placeComment($_POST['content'], $_POST['name']);
+        header("Refresh:0");
     }
     $loggedin = $topics->isLoggedIn($_SESSION["isLoggedIn"]);
     if (isset($_POST['logOut'])) {
         session_destroy();
-        header ('Location: index.php');
+        header("Refresh:0");
     }
     if (isset($_POST['send'])) {
         $data = $topics->login($_POST['username'], $_POST['password']);
@@ -95,7 +96,7 @@
           <?php
           if ($_SESSION['isLoggedIn'] == true) {
               echo '<form class="" action="" method="post">
-                  <input type="text" name="name" value="s">
+                  <input type="text" name="name" value="">
                   <br /><textarea name="content" rows="8" cols="80"></textarea>
                   <br /><input type="submit" name="versturen" value="versturen">
               </form>';

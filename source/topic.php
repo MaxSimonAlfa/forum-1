@@ -1,6 +1,6 @@
 <?php
     session_start();
-    // error_reporting(0);
+    error_reporting(0);
     include "includes/oop.php";
 
     $topics = New forum;
@@ -9,11 +9,12 @@
     $topic = $topics->showOneTopic($_GET['id']);
     if (isset($_POST['versturen'])) {
         $data = $topics->placePost($_POST['content'], $_POST['name']);
+        header("Refresh:0");
     }
     $loggedin = $topics->isLoggedIn($_SESSION["isLoggedIn"]);
     if (isset($_POST['logOut'])) {
         session_destroy();
-        header ('Location: index.php');
+        header("Refresh:0");
     }
     if (isset($_POST['send'])) {
         $data = $topics->login($_POST['username'], $_POST['password']);
