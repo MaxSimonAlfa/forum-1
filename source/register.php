@@ -4,14 +4,21 @@
     $register = New forum;
 
     if (isset($_POST['register'])) {
-        $data = $register->register($_POST['username'], $_POST['password'], $_POST['email']);
-        if ($data == true) {
-            header('Location: index.php');
-            echo "je bent geregistreerd";
-        } elseif ($data == false) {
-            print_r($_SESSION['errorMessage']);
+        $check = $register->passwordCheck($_POST['password']);
+        if ($_POST['password'] == $_POST['password2'] && $_POST['email'] == $_POST['email2'] && $check == true) {
+            $data = $register->register($_POST['username'], $_POST['password'], $_POST['email']);
+            if ($data == true) {
+                header('Location: index.php');
+                echo "je bent geregistreerd";
+            } elseif ($data == false) {
+                print_r($_SESSION['errorMessage']);
+            }
+        } if ($check == false) {
+            echo "je wachtwoord is te zwak";
         }
-
+        else {
+            echo "je wachtwoord of email is niet gelijk";
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -49,8 +56,10 @@
         <hr>
         <form method="post" class="">
           <br />je username <input type="text" name="username" class="form-control">
-          <br />je wachtwoord <input type="password" name="password" class="form-control">
+          <br />je wachtwoord (tussen de 8 en 20 tekens en minimaal een nummer, letter, caps en symbool) <input type="password" name="password" class="form-control">
+          <br />voer je wachtwoord nog een keer in <input type="password" name="password2" class="form-control">
           <br />je email adres <input type="text" name="email" class="form-control">
+          <br />voer je email adres nog een keer in <input type="text" name="email2" class="form-control">
           <br /><input type="submit" name="register" class="btn btn-success">
         </form>
         <hr>

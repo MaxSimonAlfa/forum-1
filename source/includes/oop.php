@@ -214,5 +214,13 @@
             $deleteUser->execute(array($username1));
 
         }
+        function passwordCheck($password) {
+            $pwd = $password;
+            if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$#", $pwd)){
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 ?>
