@@ -94,7 +94,7 @@
         <div class="col-md-4">
           <h2><?php echo $topic['name']; ?></h2>
           <p><?php echo $topic['description']; ?> </p>
-          <p><a class="btn btn-default" href="topic.php?id=" role="button">Naar de topic &raquo;</a></p>
+          <p><a class="btn btn-default" href="topic.php?id=<?php echo $topic['id']; ?>" role="button">Naar de topic &raquo;</a></p>
         </div>
         <?php endforeach; ?>
 

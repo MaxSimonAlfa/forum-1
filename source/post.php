@@ -79,7 +79,7 @@
       <div>
           <div >
           <?php foreach ($posts as $posts):?>
-              <h2><?php echo $posts['name']; ?></h2>
+              <h2>post: <?php echo $posts['name']; ?></h2>
               <p><?php echo $posts['content']; ?></p>
               <h6><?php echo $posts['date']; ?></h6>
               <hr>

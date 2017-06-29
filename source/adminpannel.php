@@ -41,7 +41,7 @@
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
           </button>
           <a class="navbar-brand" href="index.php">Computer Forum</a>
         </div>
@@ -53,14 +53,15 @@
               if ($adminCheck['admin'] == 1) {
                   echo '<form class="" action="" method="post">
                       <h2>Maak een nieuw topic aan</h2>
-                      <input type="text" name="name" value="s">
+                      <input type="text" name="name" value="">
                       <br /><textarea name="content" rows="8" cols="80"></textarea>
                       <br /><input type="submit" name="versturen" value="versturen">
                   </form>';
                   echo '<form class="" action="" method="post">
                       <h2>verwijder een user</h2>
+                      voer hier degene zijn username in die je wil verwijderen<br />
                       <input type="text" name="username" value="">
-                      <br /><input type="submit" name="banUser" value="versturen">
+                      <br /><input type="submit" name="banUser" value="versturen" >
                   </form>';
               } else  {
                   echo "";

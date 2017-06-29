@@ -1,11 +1,12 @@
 <?php
     session_start();
-    error_reporting(0);
+    // error_reporting(0);
     include "includes/oop.php";
 
     $topics = New forum;
     $loggedin = $topics->isLoggedIn($_SESSION["isLoggedIn"]);
     $posts = $topics->showPosts($_GET['id']);
+    $topic = $topics->showOneTopic($_GET['id']);
     if (isset($_POST['versturen'])) {
         $data = $topics->placePost($_POST['content'], $_POST['name']);
     }
@@ -75,7 +76,14 @@
     <div class="container">
       <!-- Example row of columns -->
       <div>
-          <div >
+          <div>
+              <?php foreach ($topic as $topic): ?>
+                  <h1>topic: <?php echo $topic['name']; ?></h1>
+                  <h2><?php echo $topic['description'] ?></h2>
+              <?php endforeach ?>
+              <hr>
+              <h3>posts:</h3>
+              <hr>
           <?php foreach ($posts as $posts):?>
               <h3><?php echo $posts['name']; ?></h3>
               <p><?php echo $posts['content']; ?></p>

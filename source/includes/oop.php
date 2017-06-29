@@ -208,12 +208,18 @@
             $placePost = $con->prepare("INSERT INTO topics (name, description, username) VALUES(?, ?, ?)");
             $placePost->execute(array($name, $description, $_SESSION['username']));
         }
+        /**
+         * een admin een user laten bannen via het admin pannel
+         */
         function banUser($username1) {
             include "includes/connection.php";
             $deleteUser = $con->prepare("DELETE FROM users WHERE username = ?");
             $deleteUser->execute(array($username1));
 
         }
+        /**
+         * controlleren of je wachtwoord aan de eisen voldoet
+         */
         function passwordCheck($password) {
             $pwd = $password;
             if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$#", $pwd)){
